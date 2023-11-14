@@ -38,11 +38,11 @@ public class SocketCliente {
 					}
 				} while (Integer.parseInt(numero1) == 1 || Integer.parseInt(numero1) == 2
 						|| Integer.parseInt(numero1) == 3);
-
 				System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
 				socketAlServidor.connect(direccionServidor);
 				System.out.println("CLIENTE: Conexion establecida... a " + IP_SERVER + " por el puerto " + PUERTO);
 				salida = new PrintStream(socketAlServidor.getOutputStream());
+				salida.println(numero1);
 				entrada = new InputStreamReader(socketAlServidor.getInputStream());
 				bf = new BufferedReader(entrada);
 				System.out.println("CLIENTE: Esperando al resultado del servidor...");
