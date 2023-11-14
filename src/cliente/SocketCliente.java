@@ -32,12 +32,12 @@ public class SocketCliente {
 				System.out.println("CLIENTE: Introduzca los numeros a sumar");
 				do {
 					numero1 = sc.nextLine();
-					if (Integer.parseInt(numero1) == 1 || Integer.parseInt(numero1) == 2
-							|| Integer.parseInt(numero1) == 3) {
+					if (Integer.parseInt(numero1) != 1 || Integer.parseInt(numero1) != 2
+							|| Integer.parseInt(numero1) != 3) {
 						System.out.println("PORFAVOR INTRODUZCA UNA OPCIÓN VÁLIDA");
 					}
-				} while (Integer.parseInt(numero1) == 1 || Integer.parseInt(numero1) == 2
-						|| Integer.parseInt(numero1) == 3);
+				} while (Integer.parseInt(numero1) != 1 || Integer.parseInt(numero1) != 2
+						|| Integer.parseInt(numero1) != 3);
 
 				System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
 				socketAlServidor.connect(direccionServidor);
