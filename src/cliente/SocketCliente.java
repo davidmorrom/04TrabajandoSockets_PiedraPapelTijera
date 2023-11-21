@@ -21,7 +21,6 @@ public class SocketCliente {
 		Socket socketAlServidor = new Socket();
 		String jugador;
 
-
 		System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
 		try {
 			socketAlServidor.connect(direccionServidor);
@@ -42,14 +41,19 @@ public class SocketCliente {
 		String puntuacion;
 		String winner;
 		String finalWinner;
-		
+
 		try (Scanner sc = new Scanner(System.in)) {
 			while (!salir.equals("fin")) {
 				puntuacion = bf.readLine();
 				System.out.println(puntuacion);
 				System.out.println("Menú juego: \n" + "1. Piedra \n" + "2. Papel \n" + "3. Tijera");
 				System.out.print("Introduzca la opción deseada: ");
-				numero1 = sc.nextLine();
+				do {
+					numero1 = sc.nextLine();
+					if (!numero1.equals("1") && !numero1.equals("2") && !numero1.equals("3")) {
+						System.out.println("PORFAVOR INTRODUZCA UNA OPCIÓN VÁLIDA");
+					}
+				} while (!numero1.equals("1") && !numero1.equals("2") && !numero1.equals("3"));
 				salida.println(numero1);
 				System.out.println("CLIENTE: Esperando al resultado del servidor...");
 				winner = bf.readLine();
