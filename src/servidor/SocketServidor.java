@@ -96,6 +96,7 @@ public class SocketServidor {
 			}
 			salida1.println(puntuacionFinal);
 			salida2.println(puntuacionFinal);
+			Thread.sleep(5000);
 		} catch (IOException e) {
 			System.err.println("SERVIDOR: Error de entrada/salida");
 			e.printStackTrace();
@@ -104,17 +105,6 @@ public class SocketServidor {
 			e.printStackTrace();
 		}
 	}
-	
-	/*public synchronized void setEleccion() {
-		String eleccion = null;
-		String[] operadores = eleccion.split("-");
-		int nCliente = Integer.parseInt(operadores[0]);
-		if (nCliente == 1) {
-			eleccion1 = Integer.parseInt(operadores[1]);
-		}else if (nCliente == 2) {
-			eleccion2 = Integer.parseInt(operadores[1]);
-		}
-	}*/
 	
 	public static int jugar(int jugador1, int jugador2) {
 		// ganador: 0 = empate, 1 = gana jugador1, 2 = gana jugador2
