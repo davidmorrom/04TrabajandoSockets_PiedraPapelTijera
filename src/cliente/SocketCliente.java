@@ -49,16 +49,13 @@ public class SocketCliente {
 				System.out.println(puntuacion);
 				System.out.println("Menú juego: \n" + "1. Piedra \n" + "2. Papel \n" + "3. Tijera");
 				System.out.print("Introduzca la opción deseada: ");
-				System.out.println("CLIENTE: Introduzca los numeros a sumar");
 				do {
 					numero1 = sc.nextLine();
-					if (Integer.parseInt(numero1) != 1 || Integer.parseInt(numero1) != 2
-							|| Integer.parseInt(numero1) != 3) {
+					if (!numero1.equals("1")||!numero1.equals("2")||!numero1.equals("3")) {
 						System.out.println("PORFAVOR INTRODUZCA UNA OPCIÓN VÁLIDA");
 					}
 				} while (Integer.parseInt(numero1) != 1 || Integer.parseInt(numero1) != 2
 						|| Integer.parseInt(numero1) != 3);
-				;
 				salida.println(numero1);
 				System.out.println("CLIENTE: Esperando al resultado del servidor...");
 				winner = bf.readLine();
