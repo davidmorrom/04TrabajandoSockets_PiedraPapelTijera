@@ -24,7 +24,7 @@ public class SocketServidor {
 		System.out.println("      APLICACIÓN DE SERVIDOR      ");
 		System.out.println("----------------------------------");
 
-		int peticion = 0;
+		int peticion = 1;
 
 		try (ServerSocket servidor = new ServerSocket()) {
 			int puntuacion1 = 0;
@@ -36,14 +36,16 @@ public class SocketServidor {
 			
 			System.out.println("SERVIDOR: Esperando peticion por el puerto " + PUERTO);
 			while (seguir) {
-				System.out.println("SERVIDOR: peticion numero " + ++peticion + " recibida");
 				if (peticion == 1) {
 					socketAlCliente1 = servidor.accept();
+					System.out.println("SERVIDOR: peticion numero " + peticion + " recibida");
+					peticion++;
 					entrada1 = new InputStreamReader(socketAlCliente1.getInputStream());
 					salida1 = new PrintStream(socketAlCliente1.getOutputStream());
 					salida1.println("Eres el jugador 1");
 				} else if (peticion == 2) {
 					socketAlCliente2 = servidor.accept();
+					System.out.println("SERVIDOR: peticion numero " + peticion + " recibida");
 					entrada2 = new InputStreamReader(socketAlCliente2.getInputStream());
 					salida2 = new PrintStream(socketAlCliente2.getOutputStream());
 					salida2.println("Eres el jugador 2");
