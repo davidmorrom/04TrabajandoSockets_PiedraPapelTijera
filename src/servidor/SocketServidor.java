@@ -52,9 +52,9 @@ public class SocketServidor {
 					seguir = false;
 				}
 			}
-			while (puntuacion1 < 3 || puntuacion2 < 3) {
-				salida1.println("Puntuación: \n Jugador1 = " + puntuacion1 + " rondas ganadas \n Jugador2 = " + puntuacion2 + " rondas ganadas");
-				salida2.println("Puntuación: \n Jugador1 = " + puntuacion1 + " rondas ganadas \n Jugador2 = " + puntuacion2 + " rondas ganadas");
+			while (puntuacion1 != 3 && puntuacion2 != 3) {
+				salida1.println("Puntuación: Jugador1 = " + puntuacion1 + " rondas ganadas Jugador2 = " + puntuacion2 + " rondas ganadas");
+				salida2.println("Puntuación: Jugador1 = " + puntuacion1 + " rondas ganadas Jugador2 = " + puntuacion2 + " rondas ganadas");
 				String ganadorRonda = "";
 				int gana = 0;
 				BufferedReader bf1 = new BufferedReader(entrada1);
