@@ -11,22 +11,39 @@ import java.util.Scanner;
 
 public class SocketCliente {
 
-	public static final int PUERTO = 2022;
-	public static final String IP_SERVER = "192.168.22.136";
+	public static final int PUERTO = 2017;
+	public static final String IP_SERVER = "192.168.231.136";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("        APLICACIÓN CLIENTE         ");
 		System.out.println("-----------------------------------");
 		InetSocketAddress direccionServidor = new InetSocketAddress(IP_SERVER, PUERTO);
 		Socket socketAlServidor = new Socket();
+		String jugador;
+		PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
+		InputStreamReader entrada = new InputStreamReader(socketAlServidor.getInputStream());
+		BufferedReader bf = new BufferedReader(entrada);
+
+		System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
+		try {
+			socketAlServidor.connect(direccionServidor);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("CLIENTE: Conexion establecida... a " + IP_SERVER + " por el puerto " + PUERTO);
+		jugador = bf.readLine();
+		System.out.println(jugador);
 		String numero1;
-		String operandos;
-		PrintStream salida;
-		InputStreamReader entrada;
-		BufferedReader bf;
-		String resultado;
+
+		String salir = "";
+		String puntuacion;
+		String winner;
+		String finalWinner;
+		
 		try (Scanner sc = new Scanner(System.in)) {
-			while (true) {
+			while (!salir.equals("fin")) {
+				puntuacion = bf.readLine();
+				System.out.println(puntuacion);
 				System.out.println("Menú juego: \n" + "1. Piedra \n" + "2. Papel \n" + "3. Tijera");
 				System.out.print("Introduzca la opción deseada: ");
 				System.out.println("CLIENTE: Introduzca los numeros a sumar");
@@ -38,17 +55,15 @@ public class SocketCliente {
 					}
 				} while (Integer.parseInt(numero1) != 1 || Integer.parseInt(numero1) != 2
 						|| Integer.parseInt(numero1) != 3);
-				System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
-				socketAlServidor.connect(direccionServidor);
-				System.out.println("CLIENTE: Conexion establecida... a " + IP_SERVER + " por el puerto " + PUERTO);
-				salida = new PrintStream(socketAlServidor.getOutputStream());
+				;
 				salida.println(numero1);
-				entrada = new InputStreamReader(socketAlServidor.getInputStream());
-				bf = new BufferedReader(entrada);
 				System.out.println("CLIENTE: Esperando al resultado del servidor...");
-				resultado = bf.readLine();
-
+				winner = bf.readLine();
+				System.out.println(winner);
+				salir = bf.readLine();
 			}
+			finalWinner = bf.readLine();
+			System.out.println(finalWinner);
 		} catch (UnknownHostException e) {
 			System.err.println("CLIENTE: No encuentro el servidor en la dirección" + IP_SERVER);
 			e.printStackTrace();
