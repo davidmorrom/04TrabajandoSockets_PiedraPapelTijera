@@ -20,9 +20,7 @@ public class SocketCliente {
 		InetSocketAddress direccionServidor = new InetSocketAddress(IP_SERVER, PUERTO);
 		Socket socketAlServidor = new Socket();
 		String jugador;
-		PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
-		InputStreamReader entrada = new InputStreamReader(socketAlServidor.getInputStream());
-		BufferedReader bf = new BufferedReader(entrada);
+
 
 		System.out.println("CLIENTE: Esperando a que el servidor acepte la conexión");
 		try {
@@ -30,6 +28,11 @@ public class SocketCliente {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		InputStreamReader entrada = new InputStreamReader(socketAlServidor.getInputStream());
+
+		PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
+		BufferedReader bf = new BufferedReader(entrada);
+
 		System.out.println("CLIENTE: Conexion establecida... a " + IP_SERVER + " por el puerto " + PUERTO);
 		jugador = bf.readLine();
 		System.out.println(jugador);
