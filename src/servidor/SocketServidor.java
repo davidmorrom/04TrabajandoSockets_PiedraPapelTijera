@@ -79,6 +79,13 @@ public class SocketServidor {
 				}
 				salida1.println(ganadorRonda);
 				salida2.println(ganadorRonda);
+				if (puntuacion1 == 3 || puntuacion2 == 3) {
+					salida1.println("fin");
+					salida2.println("fin");
+				} else {
+					salida1.println("nofin");
+					salida2.println("nofin");
+				}
 			}
 			if (puntuacion1 == 3) {
 				puntuacionFinal = "Ha ganado la partida el jugador 1";
@@ -111,7 +118,7 @@ public class SocketServidor {
 		// ganador: 0 = empate, 1 = gana jugador1, 2 = gana jugador2
 		int ganador = 0;
 		switch (jugador1) {
-		// 1 = piedra, 2 = papel, 3 = tijera
+		// 1 = piedra, 2 = papel 3 = tijera
 		case 1:
 			if (jugador2 == 2) {
 				ganador = 2;
